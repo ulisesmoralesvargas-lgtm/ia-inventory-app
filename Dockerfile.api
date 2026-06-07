@@ -1,0 +1,13 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiamos el código y la carpeta de datos
+COPY api.py .
+COPY data/ ./data/
+
+# Cloud Run pasará la variable PORT automáticamente
+CMD uvicorn api:app --host 0.0.0.0 --port ${PORT:-8000}
