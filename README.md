@@ -1,1 +1,0 @@
-# ia-inventory-app
